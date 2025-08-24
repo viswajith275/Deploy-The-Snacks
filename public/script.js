@@ -21,7 +21,7 @@ const Game = {
     powerUp: {
         active: false,
         timer: 0,
-        duration: 3000 // 3 seconds in milliseconds
+        duration: 5000 // 5 seconds in milliseconds
     },
     
     // Game settings
@@ -525,7 +525,6 @@ function updateFoodItems(deltaTime) {
                 updateScore();
                 playSound('success');
             } else {
-                addToTower(food);
                 createSuccessParticles(food.x, food.y, food.color);
                 Game.score += 10;
                 updateScore();
@@ -618,7 +617,7 @@ function checkFoodCollision(food) {
     return false;
 }
 
-function addToTower(food) {
+/*function addToTower(food) {
     Game.tower.push({
         x: food.x,
         y: food.y,
@@ -639,7 +638,7 @@ function addToTower(food) {
         }
     }
 }
-
+*/
 function updateCrow(deltaTime) {
     if (!Game.crow || !Game.crow.active) return;
     
@@ -810,7 +809,7 @@ function checkGameEnd() {
 }
 
 function updateDifficulty() {
-    const progress = Game.tower.length / 20; // Assume 20 pieces to reach top
+    const progress = Game.score / 200; // Assume 20 pieces to reach top
     
     Game.difficulty.lineSpeed = 100 + progress * 100;
     Game.difficulty.dropSpeed = 200 + progress * 50;
